@@ -1,10 +1,10 @@
 package com.example;
 
-import javax.swing.*;
-import java.awt.*;
-
 import com.example.Menu.Menu;
 import com.example.SuperMenu.SuperMenu;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class MainApp extends JFrame {
 
@@ -17,11 +17,11 @@ public class MainApp extends JFrame {
 
 		SuperMenu superMenu = new SuperMenu();
 
+		Menu menu = new Menu(this);
+
 		JPanel content = new JPanel();
 		content.setBackground(new Color(39, 64, 96));
 		content.setLayout(new BorderLayout());
-
-		Menu menu = new Menu(this);
 
 		content.add(menu, BorderLayout.WEST);
 

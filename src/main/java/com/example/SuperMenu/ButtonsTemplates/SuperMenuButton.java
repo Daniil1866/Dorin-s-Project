@@ -1,4 +1,4 @@
-package com.example.SuperMenu;
+package com.example.SuperMenu.ButtonsTemplates;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -20,7 +20,7 @@ public class SuperMenuButton extends JButton {
 	ImageIcon analyticsIcon = resizeImage("src/main/resources/Img/analytics.png", 50, 50);
 	ImageIcon settingsIcon = resizeImage("src/main/resources/Img/settings.png", 50, 50);
 
-	SuperMenuButton(String imgName) {
+	public SuperMenuButton(String imgName) {
 
 		superIcons.put("agenda", agendaIcon);
 		superIcons.put("spaces", spacesIcon);

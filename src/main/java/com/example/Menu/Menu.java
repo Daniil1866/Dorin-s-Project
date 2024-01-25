@@ -1,6 +1,7 @@
 package com.example.Menu;
 
 import com.example.MainApp;
+import com.example.Menu.ButtonsTemplates.MenuButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +9,12 @@ import java.awt.*;
 public class Menu extends JPanel {
 
 	private MainApp mainApp;
+
+	AgendaMenu agendaMenu = new AgendaMenu();
+	SpacesMenu spacesMenu = new SpacesMenu();
+	HistoryMenu historyMenu = new HistoryMenu();
+	AnaliticsMenu analiticsMenu = new AnaliticsMenu();
+	SettingsMenu settingsMenu = new SettingsMenu();
 
 	public Menu(MainApp mainApp) {
 		this.mainApp = mainApp;

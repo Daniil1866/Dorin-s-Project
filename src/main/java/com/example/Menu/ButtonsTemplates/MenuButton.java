@@ -1,4 +1,4 @@
-package com.example.Menu;
+package com.example.Menu.ButtonsTemplates;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -17,7 +17,7 @@ public class MenuButton extends JButton {
 	ImageIcon extendIcon = resizeImage("src/main/resources/Img/menu_extends.png", 20, 20);
 	ImageIcon reduceIcon = resizeImage("src/main/resources/Img/menu_reduce.png", 20, 20);
 
-	MenuButton(String buttonName, String imgName) {
+	public MenuButton(String buttonName, String imgName) {
 
 		Icons.put("extend", extendIcon);
 		Icons.put("reduce", reduceIcon);

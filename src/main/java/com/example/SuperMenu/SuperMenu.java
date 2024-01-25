@@ -1,7 +1,8 @@
 package com.example.SuperMenu;
 
-import javax.swing.*;
+import com.example.SuperMenu.ButtonsTemplates.SuperMenuButton;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class SuperMenu extends JPanel {
