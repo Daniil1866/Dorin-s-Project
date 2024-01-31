@@ -1,9 +1,10 @@
 package com.example;
 
 import javax.swing.*;
-import javax.swing.border.Border;
+import javax.swing.border.*;
 
 import java.awt.*;
+import java.awt.event.*;
 
 public class Menu extends JPanel {
 	JPanel AgendaMenu;
@@ -93,6 +94,7 @@ public class Menu extends JPanel {
 		SettingsMenu.add(interfaceApp);
 	}
 
+	// Change the panels
 	public void setCurrentPanel(JPanel newPanel) {
 		if (currentPanel != null) {
 			this.remove(currentPanel);
@@ -107,15 +109,84 @@ public class Menu extends JPanel {
 
 }
 
-// ========== BUTTONS TEMPLATE ========== //
+// ========== BUTTON TEMPLATE ========== //
 class MenuButton extends JButton {
 
-	Border buttonBorder = BorderFactory.createEmptyBorder(0, 0, 10, 0);
+	Border emptyBorder = BorderFactory.createEmptyBorder(5, 5, 5, 0);
+	Border roundBorder = new RoundBorder(8);
+
+	CompoundBorder finalButtonBorder = new CompoundBorder(emptyBorder, roundBorder);
 
 	MenuButton(String name) {
 		this.setText(name);
-		this.setForeground(new Color(200, 200, 200));
-		this.setFont(new Font("dfgvhbj", Font.PLAIN, 18));
-		this.setBorder(buttonBorder);
+		this.setForeground(new Color(255, 255, 255));
+		this.setFont(new Font("dfgvhbj", Font.PLAIN, 20));
+		this.setMaximumSize(new Dimension(295, 50));
+		this.setBorder(finalButtonBorder);
+		this.addMouseListener(new ButtonMouseListener());
+	}
+
+	// ========== BUTTON BORDER ========== //
+	public static class RoundBorder extends AbstractBorder {
+		private int radius;
+
+		public RoundBorder(int radius) {
+			this.radius = radius;
+		}
+
+		@Override
+		public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+			Graphics2D g2d = (Graphics2D) g.create();
+
+			int strokeWidth = 2; // Adjust this value to set the thickness of the border
+			g2d.setStroke(new BasicStroke(strokeWidth));
+
+			g2d.drawRoundRect(x + strokeWidth / 2, y + strokeWidth / 2,
+					width - strokeWidth, height - strokeWidth,
+					radius, radius);
+
+			g2d.dispose();
+		}
+
+		// Set all 4 margins(left, top, right, bottom) to the value of radius
+		@Override
+		public Insets getBorderInsets(Component c, Insets insets) {
+			insets.left = insets.top = insets.right = insets.bottom = radius;
+			return insets;
+		}
+	}
+
+	// ========== BUTTON ANIMATION ========== //
+	private class ButtonMouseListener implements MouseListener {
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			MenuButton button = (MenuButton) e.getSource();
+			button.setForeground(new Color(5, 205, 5));
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			MenuButton button = (MenuButton) e.getSource();
+			button.setForeground(new Color(255, 255, 255));
+
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			MenuButton button = (MenuButton) e.getSource();
+			button.setForeground(new Color(150, 150, 150));
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			MenuButton button = (MenuButton) e.getSource();
+			button.setForeground(new Color(255, 255, 255));
+		}
 	}
 }
