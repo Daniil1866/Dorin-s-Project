@@ -112,7 +112,7 @@ public class Menu extends JPanel {
 // ========== BUTTON TEMPLATE ========== //
 class MenuButton extends JButton {
 
-	Border emptyBorder = BorderFactory.createEmptyBorder(5, 5, 5, 0);
+	Border emptyBorder = BorderFactory.createEmptyBorder(10, 5, 0, 0);
 	Border roundBorder = new RoundBorder(8);
 
 	CompoundBorder finalButtonBorder = new CompoundBorder(emptyBorder, roundBorder);
@@ -120,73 +120,86 @@ class MenuButton extends JButton {
 	MenuButton(String name) {
 		this.setText(name);
 		this.setForeground(new Color(255, 255, 255));
-		this.setFont(new Font("dfgvhbj", Font.PLAIN, 20));
+		this.setFont(new Font("Calibri Li", Font.PLAIN, 20));
 		this.setMaximumSize(new Dimension(295, 50));
 		this.setBorder(finalButtonBorder);
 		this.addMouseListener(new ButtonMouseListener());
+
 	}
 
-	// ========== BUTTON BORDER ========== //
-	public static class RoundBorder extends AbstractBorder {
-		private int radius;
+}
 
-		public RoundBorder(int radius) {
-			this.radius = radius;
-		}
+// ========== BUTTON BORDER ========== //
+class RoundBorder extends AbstractBorder {
+	private int radius;
 
-		@Override
-		public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-			Graphics2D g2d = (Graphics2D) g.create();
-
-			int strokeWidth = 2; // Adjust this value to set the thickness of the border
-			g2d.setStroke(new BasicStroke(strokeWidth));
-
-			g2d.drawRoundRect(x + strokeWidth / 2, y + strokeWidth / 2,
-					width - strokeWidth, height - strokeWidth,
-					radius, radius);
-
-			g2d.dispose();
-		}
-
-		// Set all 4 margins(left, top, right, bottom) to the value of radius
-		@Override
-		public Insets getBorderInsets(Component c, Insets insets) {
-			insets.left = insets.top = insets.right = insets.bottom = radius;
-			return insets;
-		}
+	public RoundBorder(int radius) {
+		this.radius = radius;
 	}
 
-	// ========== BUTTON ANIMATION ========== //
-	private class ButtonMouseListener implements MouseListener {
+	@Override
+	public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+		Graphics2D g2d = (Graphics2D) g.create();
 
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			MenuButton button = (MenuButton) e.getSource();
-			button.setForeground(new Color(5, 205, 5));
+		int strokeWidth = 2; // Adjust this value to set the thickness of the border
+		g2d.setStroke(new BasicStroke(strokeWidth));
+
+		g2d.drawRoundRect(x + strokeWidth / 2, y + strokeWidth / 2,
+				width - strokeWidth, height - strokeWidth,
+				radius, radius);
+
+		g2d.dispose();
+	}
+
+	// Set all 4 margins(left, top, right, bottom) to the value of radius
+	@Override
+	public Insets getBorderInsets(Component c, Insets insets) {
+		insets.left = insets.top = insets.right = insets.bottom = radius;
+		return insets;
+	}
+}
+
+// ========== BUTTON ANIMATION ========== //
+class ButtonMouseListener implements MouseListener {
+
+	private static MenuButton previousButton;
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		MenuButton button = (MenuButton) e.getSource();
+
+		if (previousButton != null) {
+			previousButton.setForeground(new Color(255, 255, 255));
 		}
 
-		@Override
-		public void mousePressed(MouseEvent e) {
+		previousButton = button;
+		button.setForeground(new Color(5, 255, 5));
+	}
 
-		}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		MenuButton button = (MenuButton) e.getSource();
+		button.setForeground(new Color(255, 255, 255));
 
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			MenuButton button = (MenuButton) e.getSource();
-			button.setForeground(new Color(255, 255, 255));
+	}
 
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			MenuButton button = (MenuButton) e.getSource();
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		MenuButton button = (MenuButton) e.getSource();
+		if (!button.equals(previousButton)) {
 			button.setForeground(new Color(150, 150, 150));
 		}
+	}
 
-		@Override
-		public void mouseExited(MouseEvent e) {
-			MenuButton button = (MenuButton) e.getSource();
+	@Override
+	public void mouseExited(MouseEvent e) {
+		MenuButton button = (MenuButton) e.getSource();
+		if (!button.equals(previousButton)) {
 			button.setForeground(new Color(255, 255, 255));
 		}
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
 	}
 }
