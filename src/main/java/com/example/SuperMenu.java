@@ -19,37 +19,37 @@ public class SuperMenu extends JPanel {
 		this.setPreferredSize(new Dimension(70, 1000));
 		this.setLayout(null);
 
-		panelMenu.setCurrentPanel(panelMenu.AgendaMenu);
+		panelMenu.setCurrentMenuPanel(panelMenu.AgendaMenu);
 
 		// ===== Initialization BUTTONS in SuperMenu ===== //
 		// Agenda Button
 		SuperMenuButton AgendaButton = new SuperMenuButton("agenda");
-		AgendaButton.setBounds(0, 0, 70, 70);
-		AgendaButton.addActionListener((e) -> panelMenu.setCurrentPanel(panelMenu.AgendaMenu));
+		AgendaButton.setBounds(0, 0, 68, 68);
+		AgendaButton.addActionListener((e) -> panelMenu.setCurrentMenuPanel(panelMenu.AgendaMenu));
 
 		// Spaces Button
 		SuperMenuButton SpacesButton = new SuperMenuButton("spaces");
-		SpacesButton.setBounds(0, 70, 70, 70);
-		SpacesButton.addActionListener((e) -> panelMenu.setCurrentPanel(panelMenu.SpacesMenu));
+		SpacesButton.setBounds(0, 70, 68, 68);
+		SpacesButton.addActionListener((e) -> panelMenu.setCurrentMenuPanel(panelMenu.SpacesMenu));
 
 		// History Button
 		SuperMenuButton HistoryButton = new SuperMenuButton("history");
-		HistoryButton.setBounds(0, 140, 70, 70);
-		HistoryButton.addActionListener((e) -> panelMenu.setCurrentPanel(panelMenu.HistoryMenu));
+		HistoryButton.setBounds(0, 140, 68, 68);
+		HistoryButton.addActionListener((e) -> panelMenu.setCurrentMenuPanel(panelMenu.HistoryMenu));
 
 		// Analytics Button
 		SuperMenuButton AnalyticsButton = new SuperMenuButton("analytics");
-		AnalyticsButton.setBounds(0, 210, 70, 70);
-		AnalyticsButton.addActionListener((e) -> panelMenu.setCurrentPanel(panelMenu.AnalyticsMenu));
+		AnalyticsButton.setBounds(0, 210, 68, 68);
+		AnalyticsButton.addActionListener((e) -> panelMenu.setCurrentMenuPanel(panelMenu.AnalyticsMenu));
 
 		// Settings Button
 		SuperMenuButton SettingsButton = new SuperMenuButton("settings");
 		this.addComponentListener(new java.awt.event.ComponentAdapter() {
 			public void componentResized(java.awt.event.ComponentEvent evt) {
-				SettingsButton.setBounds(0, getHeight() - 70, 70, 70);
+				SettingsButton.setBounds(0, getHeight() - 72, 66, 68);
 			}
 		});
-		SettingsButton.addActionListener((e) -> panelMenu.setCurrentPanel(panelMenu.SettingsMenu));
+		SettingsButton.addActionListener((e) -> panelMenu.setCurrentMenuPanel(panelMenu.SettingsMenu));
 
 		this.add(AgendaButton);
 		this.add(SpacesButton);

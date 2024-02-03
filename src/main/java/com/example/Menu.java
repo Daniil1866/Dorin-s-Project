@@ -13,12 +13,17 @@ public class Menu extends JPanel {
 	JPanel AnalyticsMenu;
 	JPanel SettingsMenu;
 
-	JPanel currentPanel;
+	JPanel currentMenuPanel;
+	private Content panelContent;
 
-	Menu() {
+	Menu(Content panelC) {
+		this.panelContent = panelC;
+
 		this.setPreferredSize(new Dimension(300, 1000));
 		this.setBackground(new Color(39, 64, 96));
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+		panelContent.setCurrentContentPanel(panelContent.TodayContent);
 
 		// ===== Initialization PANELS in Menu ===== //
 
@@ -30,8 +35,13 @@ public class Menu extends JPanel {
 
 		// Agenda Buttons
 		MenuButton today = new MenuButton("Today");
+		today.addActionListener((e) -> panelContent.setCurrentContentPanel(panelContent.TodayContent));
+
 		MenuButton tomorrow = new MenuButton("Tomorrow");
+		tomorrow.addActionListener((e) -> panelContent.setCurrentContentPanel(panelContent.TomorrowContent));
+
 		MenuButton nextWeek = new MenuButton("Next Week");
+		nextWeek.addActionListener((e) -> panelContent.setCurrentContentPanel(panelContent.NextWeekContent));
 
 		AgendaMenu.add(today);
 		AgendaMenu.add(tomorrow);
@@ -45,7 +55,10 @@ public class Menu extends JPanel {
 
 		// Spaces Buttons
 		MenuButton everytimeTask = new MenuButton("EveryTime Task");
+		everytimeTask.addActionListener((e) -> panelContent.setCurrentContentPanel(panelContent.EveryTimeContent));
+
 		MenuButton newSpace = new MenuButton("+ Create Space");
+		newSpace.addActionListener((e) -> panelContent.setCurrentContentPanel(panelContent.NewSpaceContent));
 
 		SpacesMenu.add(everytimeTask);
 		SpacesMenu.add(newSpace);
@@ -58,10 +71,19 @@ public class Menu extends JPanel {
 
 		// History Buttons
 		MenuButton lastWeek = new MenuButton("Last Week");
+		lastWeek.addActionListener((e) -> panelContent.setCurrentContentPanel(panelContent.LastWeekContent));
+
 		MenuButton lastMonth = new MenuButton("Last Month");
+		lastMonth.addActionListener((e) -> panelContent.setCurrentContentPanel(panelContent.LastMonthContent));
+
 		MenuButton lastHalfYear = new MenuButton("Last Half Year");
+		lastHalfYear.addActionListener((e) -> panelContent.setCurrentContentPanel(panelContent.LastHalfYearContent));
+
 		MenuButton lastYear = new MenuButton("Last Year");
+		lastYear.addActionListener((e) -> panelContent.setCurrentContentPanel(panelContent.LastYearContent));
+
 		MenuButton custom = new MenuButton("Custom");
+		custom.addActionListener((e) -> panelContent.setCurrentContentPanel(panelContent.CustomContent));
 
 		HistoryMenu.add(lastWeek);
 		HistoryMenu.add(lastMonth);
@@ -77,7 +99,10 @@ public class Menu extends JPanel {
 
 		// Analytics Buttons
 		MenuButton done = new MenuButton("Done");
+		done.addActionListener((e) -> panelContent.setCurrentContentPanel(panelContent.DoneContent));
+
 		MenuButton discipline = new MenuButton("Discipline");
+		discipline.addActionListener((e) -> panelContent.setCurrentContentPanel(panelContent.DisciplineContent));
 
 		AnalyticsMenu.add(done);
 		AnalyticsMenu.add(discipline);
@@ -90,18 +115,19 @@ public class Menu extends JPanel {
 
 		// Setting Button
 		MenuButton interfaceApp = new MenuButton("Interface");
+		interfaceApp.addActionListener((e) -> panelContent.setCurrentContentPanel(panelContent.InterfaceAppContent));
 
 		SettingsMenu.add(interfaceApp);
 	}
 
 	// Change the panels
-	public void setCurrentPanel(JPanel newPanel) {
-		if (currentPanel != null) {
-			this.remove(currentPanel);
+	public void setCurrentMenuPanel(JPanel newPanel) {
+		if (currentMenuPanel != null) {
+			this.remove(currentMenuPanel);
 		}
 		if (newPanel != null) {
 			this.add(newPanel);
-			currentPanel = newPanel;
+			currentMenuPanel = newPanel;
 			revalidate();
 			repaint();
 		}
