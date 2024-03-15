@@ -13,6 +13,7 @@ public class MainApp extends JFrame {
 		this.setTitle("TO DO");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		this.setMinimumSize(new Dimension(700, 380));
 
 		content = new Content();
 		menu = new Menu(content);
@@ -20,23 +21,10 @@ public class MainApp extends JFrame {
 
 		content.setLayout(new BorderLayout());
 		content.add(menu, BorderLayout.WEST);
+		content.setCurrentContentPanel(content.TodayContent);
 
 		this.add(superMenu, BorderLayout.WEST);
 		this.add(content, BorderLayout.CENTER);
 		this.setVisible(true);
-	}
-
-	@Override
-	public void paint(Graphics g) {
-		super.paint(g);
-
-		Graphics2D g2D = (Graphics2D) g;
-
-		g2D.setPaint(new Color(255, 255, 255));
-		g2D.setStroke(new BasicStroke(1));
-
-		g2D.drawLine(70, 0, 70, getHeight());
-		g2D.drawLine(370, 0, 370, getHeight());
-
 	}
 }

@@ -16,14 +16,15 @@ public class Menu extends JPanel {
 	JPanel currentMenuPanel;
 	private Content panelContent;
 
+	Border border = BorderFactory.createMatteBorder(-2, 1, -10, 1, new Color(255, 255, 255));
+
 	Menu(Content panelC) {
 		this.panelContent = panelC;
 
 		this.setPreferredSize(new Dimension(300, 1000));
 		this.setBackground(new Color(39, 64, 96));
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
-		panelContent.setCurrentContentPanel(panelContent.TodayContent);
+		this.setBorder(border);
 
 		// ===== Initialization PANELS in Menu ===== //
 
@@ -138,7 +139,7 @@ public class Menu extends JPanel {
 // ========== BUTTON TEMPLATE ========== //
 class MenuButton extends JButton {
 
-	Border emptyBorder = BorderFactory.createEmptyBorder(10, 5, 0, 0);
+	Border emptyBorder = BorderFactory.createEmptyBorder(8, 5, 0, 0);
 	Border roundBorder = new RoundBorder(8);
 
 	CompoundBorder finalButtonBorder = new CompoundBorder(emptyBorder, roundBorder);
@@ -146,8 +147,8 @@ class MenuButton extends JButton {
 	MenuButton(String name) {
 		this.setText(name);
 		this.setForeground(new Color(255, 255, 255));
-		this.setFont(new Font("Calibri Li", Font.PLAIN, 20));
-		this.setMaximumSize(new Dimension(295, 50));
+		this.setFont(new Font("Baloo Bhaina 2", Font.PLAIN, 25));
+		this.setMaximumSize(new Dimension(295, 60));
 		this.setBorder(finalButtonBorder);
 		this.addMouseListener(new ButtonMouseListener());
 
@@ -171,7 +172,7 @@ class RoundBorder extends AbstractBorder {
 		g2d.setStroke(new BasicStroke(strokeWidth));
 
 		g2d.drawRoundRect(x + strokeWidth / 2, y + strokeWidth / 2,
-				width - strokeWidth, height - strokeWidth,
+				width - strokeWidth, height - strokeWidth - 5,
 				radius, radius);
 
 		g2d.dispose();
