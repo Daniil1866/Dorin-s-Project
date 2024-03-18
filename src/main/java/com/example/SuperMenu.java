@@ -64,11 +64,11 @@ class SuperMenuButton extends JButton {
 
 	Border buttonBorder = BorderFactory.createEmptyBorder();
 
-	ImageIcon agendaIcon = resizeImage("src/main/resources/Img/agenda.png", 50, 50);
-	ImageIcon spacesIcon = resizeImage("src/main/resources/Img/spaces.png", 50, 50);
-	ImageIcon historyIcon = resizeImage("src/main/resources/Img/history.png", 50, 50);
-	ImageIcon analyticsIcon = resizeImage("src/main/resources/Img/analytics.png", 50, 50);
-	ImageIcon settingsIcon = resizeImage("src/main/resources/Img/settings.png", 50, 50);
+	ImageIcon agendaIcon = resizeImage("src/main/resources/Img/SuperMenu/agenda.png", 50, 50);
+	ImageIcon spacesIcon = resizeImage("src/main/resources/Img/SuperMenu/spaces.png", 50, 50);
+	ImageIcon historyIcon = resizeImage("src/main/resources/Img/SuperMenu/history.png", 50, 50);
+	ImageIcon analyticsIcon = resizeImage("src/main/resources/Img/SuperMenu/analytics.png", 50, 50);
+	ImageIcon settingsIcon = resizeImage("src/main/resources/Img/SuperMenu/settings.png", 50, 50);
 
 	HashMap<String, ImageIcon> superIcons = new HashMap<>();
 

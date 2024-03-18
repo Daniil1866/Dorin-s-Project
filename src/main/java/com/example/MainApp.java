@@ -12,8 +12,8 @@ public class MainApp extends JFrame {
 	MainApp() {
 		this.setTitle("TO DO");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setMinimumSize(new Dimension(700, 380));
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		content = new Content();
 		menu = new Menu(content);
