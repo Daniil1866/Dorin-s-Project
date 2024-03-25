@@ -1,20 +1,16 @@
 package com.example.Content_Panels;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
 
 public class Today extends JPanel {
+
 	Border border = BorderFactory.createBevelBorder(1, new Color(255, 255, 255), new Color(100, 100, 100));
 	Border emptyBorder = BorderFactory.createEmptyBorder(0, 0, 0, 0);
 
-	int activeLines = 3;
-	int completedLines = 2;
+	int activeLines = 5;
+	int completedLines = 7;
 
 	JButton buttonCheckBox;
 	ImageIcon doneIcon;
@@ -28,6 +24,7 @@ public class Today extends JPanel {
 		todayLabel.setForeground(new Color(255, 255, 255));
 		todayLabel.setFont(new Font("American Typewriter", Font.BOLD, 60));
 		todayLabel.setBounds(70, 60, 200, 80);
+		// todayLabel.setBorder(border);
 
 		// ===== Date, need SQL ===== //
 		JLabel date = new JLabel("25");
@@ -35,7 +32,8 @@ public class Today extends JPanel {
 		date.setForeground(new Color(115, 150, 200));
 		date.setFont(new Font("Annai MN", Font.BOLD, 20));
 		date.setHorizontalAlignment(JLabel.CENTER);
-		date.setBounds(70, 138, 180, 25);
+		date.setBounds(70, 128, 180, 30);
+		// date.setBorder(border);
 
 		JLabel active = new JLabel("Active");
 		active.setForeground(new Color(200, 190, 25));
@@ -53,7 +51,7 @@ public class Today extends JPanel {
 			JCheckBox checkBox = new JCheckBox();
 			checkBox.setIcon(needToDoneCheck);
 
-			checkBox.setText("Test");
+			checkBox.setText(" Test");
 			checkBox.setForeground(new Color(255, 255, 255));
 			checkBox.setFont(new Font("Chalkboard SE", Font.BOLD, 20));
 			checkBox.setFocusable(false);
@@ -91,13 +89,13 @@ public class Today extends JPanel {
 			JCheckBox checkBox = new JCheckBox();
 			checkBox.setIcon(doneCheck);
 
-			checkBox.setText("Test");
+			checkBox.setText(" Test");
 			checkBox.setForeground(new Color(255, 255, 255));
 			checkBox.setFont(new Font("Chalkboard SE", Font.BOLD, 20));
 			checkBox.setFocusable(false);
 			this.addComponentListener(new java.awt.event.ComponentAdapter() {
 				public void componentResized(java.awt.event.ComponentEvent evt) {
-					checkBox.setBounds(getWidth() / 7, 460 + lines * 55, getWidth() - getWidth() / 4, 40);
+					checkBox.setBounds(getWidth() / 7, 295 + (lines + activeLines) * 55, getWidth() - getWidth() / 4, 40);
 				}
 			});
 			this.add(checkBox);
@@ -132,38 +130,5 @@ public class Today extends JPanel {
 					getWidth() - getWidth() / 7,
 					completedLine + (activeLines + i - 1) * 55);
 		}
-	}
-}
-
-class CheckBoxIcon extends ImageIcon {
-	HashMap<String, ImageIcon> checkIcons = new HashMap<>();
-
-	ImageIcon doneIcon = resizeImage("src/main/resources/Img/CheckBox/done.png", 25, 25);
-	ImageIcon needToDoneIcon = resizeImage("src/main/resources/Img/CheckBox/needToDone.png", 25, 25);
-
-	CheckBoxIcon(String name) {
-		checkIcons.put("done", doneIcon);
-		checkIcons.put("needToDone", needToDoneIcon);
-
-		setImageIcon(checkIcons.get(name));
-	}
-
-	void setImageIcon(ImageIcon icon) {
-		if (icon != null) {
-			this.setImage(icon.getImage());
-		}
-	}
-
-	// ===== Function for RESIZE Images ===== //
-	public ImageIcon resizeImage(String imagePath, int width, int height) {
-		try {
-			BufferedImage originalImage = ImageIO.read(new File(imagePath));
-			Image resizedImage = originalImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-
-			return new ImageIcon(resizedImage);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 }
