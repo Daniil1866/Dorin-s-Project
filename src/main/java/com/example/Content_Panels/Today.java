@@ -3,6 +3,7 @@ package com.example.Content_Panels;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.time.LocalDate;
 
 public class Today extends JPanel {
 
@@ -12,9 +13,12 @@ public class Today extends JPanel {
 	int activeLines = 5;
 	int completedLines = 7;
 
-	JButton buttonCheckBox;
 	ImageIcon doneIcon;
 	ImageIcon not_doneIcon;
+
+	LocalDate todayDate = LocalDate.now();
+	String day = String.valueOf(todayDate.getDayOfMonth());
+	String month = todayDate.getMonth().toString().toLowerCase();
 
 	public Today() {
 		this.setBackground(new Color(55, 80, 107));
@@ -26,13 +30,13 @@ public class Today extends JPanel {
 		todayLabel.setBounds(70, 60, 200, 80);
 		// todayLabel.setBorder(border);
 
-		// ===== Date, need SQL ===== //
-		JLabel date = new JLabel("25");
-		date.setText("25" + " " + "December");
+		JLabel date = new JLabel();
+		month = month.substring(0, 1).toUpperCase() + month.substring(1);
+		date.setText(day + " " + month);
 		date.setForeground(new Color(115, 150, 200));
 		date.setFont(new Font("Annai MN", Font.BOLD, 20));
-		date.setHorizontalAlignment(JLabel.CENTER);
-		date.setBounds(70, 128, 180, 30);
+		date.setHorizontalAlignment(JLabel.LEFT);
+		date.setBounds(75, 128, 180, 30);
 		// date.setBorder(border);
 
 		JLabel active = new JLabel("Active");
@@ -63,15 +67,25 @@ public class Today extends JPanel {
 			this.add(checkBox);
 		}
 
-		JButton addTask = new JButton("+ add Task");
-		addTask.setForeground(new Color(150, 180, 235));
+		JButton addTask = new JButton("add Task");
+		addTask.setForeground(new Color(75, 150, 235));
 		addTask.setFont(new Font("Chalkboard SE", Font.BOLD, 25));
 		this.addComponentListener(new java.awt.event.ComponentAdapter() {
 			public void componentResized(java.awt.event.ComponentEvent evt) {
-				addTask.setBounds(getWidth() / 7 - 10, 240 + (activeLines - 1) * 55, 150, 25);
+				addTask.setBounds(getWidth() / 7 - 20, 240 + (activeLines - 1) * 55, 150, 25);
 			}
 		});
 		addTask.setBorder(emptyBorder);
+
+		JButton removeTask = new JButton("remove Task");
+		removeTask.setForeground(new Color(170, 100, 210));
+		removeTask.setFont(new Font("Chalkboard SE", Font.BOLD, 25));
+		this.addComponentListener(new java.awt.event.ComponentAdapter() {
+			public void componentResized(java.awt.event.ComponentEvent evt) {
+				removeTask.setBounds(getWidth() - getWidth() / 7 - 150, 240 + (activeLines - 1) * 55, 150, 25);
+			}
+		});
+		removeTask.setBorder(emptyBorder);
 
 		JLabel completed = new JLabel("Completed");
 		completed.setForeground(new Color(50, 190, 25));
@@ -105,6 +119,7 @@ public class Today extends JPanel {
 		this.add(date);
 		this.add(active);
 		this.add(addTask);
+		this.add(removeTask);
 		this.add(completed);
 	}
 

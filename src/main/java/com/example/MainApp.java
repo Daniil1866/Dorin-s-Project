@@ -12,7 +12,7 @@ public class MainApp extends JFrame {
 	MainApp() {
 		this.setTitle("TO DO");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setMinimumSize(new Dimension(700, 380));
+		this.setMinimumSize(new Dimension(1045, 380));
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		content = new Content();
