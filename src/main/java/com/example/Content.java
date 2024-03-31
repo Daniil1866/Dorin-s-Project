@@ -26,7 +26,7 @@ public class Content extends JPanel {
 	Content() {
 		this.setBackground(new Color(55, 80, 107));
 
-		// ===== Initialization PANELS in Content ===== //
+		// ===== Initialization of PANELS in Content ===== //
 
 		// ========== AGENDA Menu ========== //
 		TodayContent = new Today();
